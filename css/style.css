@@ -279,8 +279,11 @@ a {
     position: relative;
   }
   #container .header-author.fixed {
-    position: fixed;
-    top: -13px;
+/*position: fixed;
+
+        top: -13px;*/
+    font-size: 20px;
+    line-height: 20px;
     width: 100%;
     color: #ddd;
   }
