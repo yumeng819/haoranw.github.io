@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>ransama&#39;s Blog</title>
+  <title>从创建一个字符串说起 | ransama&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####从创建一个字符串说起首先我们可能都知道创建一个字符串通常有三种写法：123var str1=&quot;wanghaoran&quot;;var str2=String(&quot;wanghaoran&quot;);var str3=new String(&quot;wanghaoran&quot;);
-我们对每一个str执行typeof，可以得到如下结果：123456typeof str1;// &apos;string&apos;typeof str2;// &apos;">
+  <meta name="description" content="首先我们可能都知道创建一个字符串通常有三种写法：123var str1=&quot;wanghaoran&quot;;var str2=String(&quot;wanghaoran&quot;);var str3=new String(&quot;wanghaoran&quot;);
+我们对每一个str执行typeof，可以得到如下结果：123456typeof str1;// &apos;string&apos;typeof str2;// &apos;string&apos;typeof">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ransama's Blog">
+<meta property="og:title" content="从创建一个字符串说起">
 <meta property="og:url" content="/2016/08/11/从创建一个字符串说起/index.html">
 <meta property="og:site_name" content="ransama's Blog">
-<meta property="og:description" content="####从创建一个字符串说起首先我们可能都知道创建一个字符串通常有三种写法：123var str1=&quot;wanghaoran&quot;;var str2=String(&quot;wanghaoran&quot;);var str3=new String(&quot;wanghaoran&quot;);
-我们对每一个str执行typeof，可以得到如下结果：123456typeof str1;// &apos;string&apos;typeof str2;// &apos;">
-<meta property="og:updated_time" content="2016-08-11T13:39:00.193Z">
+<meta property="og:description" content="首先我们可能都知道创建一个字符串通常有三种写法：123var str1=&quot;wanghaoran&quot;;var str2=String(&quot;wanghaoran&quot;);var str3=new String(&quot;wanghaoran&quot;);
+我们对每一个str执行typeof，可以得到如下结果：123456typeof str1;// &apos;string&apos;typeof str2;// &apos;string&apos;typeof">
+<meta property="og:updated_time" content="2016-08-11T13:46:21.029Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ransama's Blog">
-<meta name="twitter:description" content="####从创建一个字符串说起首先我们可能都知道创建一个字符串通常有三种写法：123var str1=&quot;wanghaoran&quot;;var str2=String(&quot;wanghaoran&quot;);var str3=new String(&quot;wanghaoran&quot;);
-我们对每一个str执行typeof，可以得到如下结果：123456typeof str1;// &apos;string&apos;typeof str2;// &apos;">
+<meta name="twitter:title" content="从创建一个字符串说起">
+<meta name="twitter:description" content="首先我们可能都知道创建一个字符串通常有三种写法：123var str1=&quot;wanghaoran&quot;;var str2=String(&quot;wanghaoran&quot;);var str3=new String(&quot;wanghaoran&quot;);
+我们对每一个str执行typeof，可以得到如下结果：123456typeof str1;// &apos;string&apos;typeof str2;// &apos;string&apos;typeof">
   
     <link rel="alternative" href="/atom.xml" title="ransama&#39;s Blog" type="application/atom+xml">
   
@@ -72,11 +72,11 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
+						<li>菜单</li>
+						<li>标签</li>
 						
 						
-						<li>A propos</li>
+						<li>关于我</li>
 						
 					</ul>
 				</div>
@@ -113,7 +113,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a>
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a>
 					</div>
 				</section>
 				
@@ -192,9 +192,31 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从创建一个字符串说起
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####从创建一个字符串说起<br>首先我们可能都知道创建一个字符串通常有三种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str1=<span class="string">"wanghaoran"</span>;</div><div class="line"><span class="keyword">var</span> str2=<span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div><div class="line"><span class="keyword">var</span> str3=<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div></pre></td></tr></table></figure></p>
+        <p>首先我们可能都知道创建一个字符串通常有三种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str1=<span class="string">"wanghaoran"</span>;</div><div class="line"><span class="keyword">var</span> str2=<span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div><div class="line"><span class="keyword">var</span> str3=<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div></pre></td></tr></table></figure></p>
 <p>我们对每一个str执行<code>typeof</code>，可以得到如下结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> str1;</div><div class="line"><span class="comment">// 'string'</span></div><div class="line"><span class="keyword">typeof</span> str2;</div><div class="line"><span class="comment">// 'string'</span></div><div class="line"><span class="keyword">typeof</span> str3;</div><div class="line"><span class="comment">// 'object'</span></div></pre></td></tr></table></figure></p>
 <p>前两种方法创建的字符串都属于Primitive String ，即原始数据类型中的原始类型字符串，返回的自然是<code>string</code>。</p>
 <p>而第三种方法使用了构造函数创建了一个String Object，所以它的类型是对象，即<code>Object</code></p>
@@ -232,7 +254,7 @@
 <div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
 		<a class="jiathis_button_facebook"></a> 
     <a class="jiathis_button_twitter"></a>
     <a class="jiathis_button_plus"></a> 
@@ -254,7 +276,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="从创建一个字符串说起" data-title="" data-url="/2016/08/11/从创建一个字符串说起/"></div>
+	<div class="ds-thread" data-thread-key="从创建一个字符串说起" data-title="从创建一个字符串说起" data-url="/2016/08/11/从创建一个字符串说起/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
