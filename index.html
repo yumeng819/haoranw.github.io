@@ -65,7 +65,7 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
+						<li>Menu</li>
 						<li>Tags</li>
 						
 						
@@ -173,6 +173,61 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-从创建一个字符串说起" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/11/从创建一个字符串说起/" class="article-date">
+  	<time datetime="2016-08-11T13:41:49.472Z" itemprop="datePublished">2016-08-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####从创建一个字符串说起<br>首先我们可能都知道创建一个字符串通常有三种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str1=<span class="string">"wanghaoran"</span>;</div><div class="line"><span class="keyword">var</span> str2=<span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div><div class="line"><span class="keyword">var</span> str3=<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div></pre></td></tr></table></figure></p>
+<p>我们对每一个str执行<code>typeof</code>，可以得到如下结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> str1;</div><div class="line"><span class="comment">// 'string'</span></div><div class="line"><span class="keyword">typeof</span> str2;</div><div class="line"><span class="comment">// 'string'</span></div><div class="line"><span class="keyword">typeof</span> str3;</div><div class="line"><span class="comment">// 'object'</span></div></pre></td></tr></table></figure></p>
+<p>前两种方法创建的字符串都属于Primitive String ，即原始数据类型中的原始类型字符串，返回的自然是<code>string</code>。</p>
+<p>而第三种方法使用了构造函数创建了一个String Object，所以它的类型是对象，即<code>Object</code></p>
+<p>那么问题来了，为什么一个原始类型的字符串能够调用各种字符串方法或者查看属性呢？这不是对象能做的事吗？</p>
+<p>要了解这个问题的答案就要从源头着手。首先根据ES发布的规范：</p>
+<p>JS在运行到形如<code>PrimitiveType.method</code>即处理某个基本类型的某方法时，会调用<code>CheckObjectCoercible(baseValue)</code>方法，在此方法中会进行<code>ToObject</code>运算。</p>
+<p>针对<code>String</code>类型的<code>ToObject</code>运算的描述如下：</p>
+<blockquote>
+<p>Create a new String object whose [[PrimitiveValue]] internal property is set to the value of the argument.</p>
+</blockquote>
+<p>过程中创建了一个对象，并且将这个字符串的内容复制给这个对象。</p>
+<p>但是这个包装对象是临时的，在操作完成时就会释放，下次再重新访问时会重新建立。所以虽然我们可以像对象那样，在原始数据类型的值上调用各种内置的对象方法，但是对原始类型的数值进行自定义方法或者属性时，并不能得到保存。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person=<span class="string">"wanghaoran"</span>;</div><div class="line">person.sex=<span class="string">"male"</span>;</div><div class="line">person.callName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(person.sex);<span class="comment">//undefined</span></div><div class="line">person.callName();<span class="comment">//报错...is Not a function</span></div></pre></td></tr></table></figure></p>
+<p>当然以下方法是没有问题的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"wanghaoran"</span>);</div><div class="line">person.sex=<span class="string">"male"</span>;</div><div class="line">person.callName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(person.sex);<span class="comment">//male</span></div><div class="line">person.callName();<span class="comment">//弹出wanghaoran</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-绝对居中(Absolute Centering)" class="article article-type-post" itemscope itemprop="blogPost">
   
