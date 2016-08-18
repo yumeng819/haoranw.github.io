@@ -7,24 +7,27 @@
   <title>ransama&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="title: NodeList和HTMLCollectiontag: [前端,JavaScript,DOM]
-date: 2015-02-18 22:54:03####1. NodeList
+
+####1. NodeList
 通过各种方法获得的NodeList是一种类数组的对象，保存一组有序的节点，虽然我们可以使用一些数组的方法，但既然有个”类”字，显然它不是一个Array实例。
-嗯，这些废话你应该都知道，虽然可能只是知道这个结">
+嗯，这些废话你应该都知道，虽然可能只是知道这个结果，却并不知道为什么。没关系，因为你现在看了这篇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ransama's Blog">
 <meta property="og:url" content="/2016/08/18/NodeList和HTMLCollection/index.html">
 <meta property="og:site_name" content="ransama's Blog">
 <meta property="og:description" content="title: NodeList和HTMLCollectiontag: [前端,JavaScript,DOM]
-date: 2015-02-18 22:54:03####1. NodeList
+
+####1. NodeList
 通过各种方法获得的NodeList是一种类数组的对象，保存一组有序的节点，虽然我们可以使用一些数组的方法，但既然有个”类”字，显然它不是一个Array实例。
-嗯，这些废话你应该都知道，虽然可能只是知道这个结">
-<meta property="og:updated_time" content="2016-08-18T14:09:32.982Z">
+嗯，这些废话你应该都知道，虽然可能只是知道这个结果，却并不知道为什么。没关系，因为你现在看了这篇">
+<meta property="og:updated_time" content="2016-08-18T14:13:06.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ransama's Blog">
 <meta name="twitter:description" content="title: NodeList和HTMLCollectiontag: [前端,JavaScript,DOM]
-date: 2015-02-18 22:54:03####1. NodeList
+
+####1. NodeList
 通过各种方法获得的NodeList是一种类数组的对象，保存一组有序的节点，虽然我们可以使用一些数组的方法，但既然有个”类”字，显然它不是一个Array实例。
-嗯，这些废话你应该都知道，虽然可能只是知道这个结">
+嗯，这些废话你应该都知道，虽然可能只是知道这个结果，却并不知道为什么。没关系，因为你现在看了这篇">
   
     <link rel="alternative" href="/atom.xml" title="ransama&#39;s Blog" type="application/atom+xml">
   
@@ -202,7 +205,8 @@ date: 2015-02-18 22:54:03####1. NodeList
       
         <hr>
 <p>title: NodeList和HTMLCollection<br>tag: [前端,JavaScript,DOM]</p>
-<h2 id="date-2015-02-18-22-54-03"><a href="#date-2015-02-18-22-54-03" class="headerlink" title="date: 2015-02-18 22:54:03"></a>date: 2015-02-18 22:54:03</h2><p>####1. <strong>NodeList</strong></p>
+<hr>
+<p>####1. NodeList</p>
 <p>通过各种方法获得的NodeList是一种类数组的对象，保存一组有序的节点，虽然我们可以使用一些数组的方法，但既然有个”类”字，显然它不是一个Array实例。</p>
 <p>嗯，这些废话你应该都知道，虽然可能只是知道这个结果，却并不知道为什么。没关系，因为你现在看了这篇文章。</p>
 <p>首先，<strong>JavaScript 的继承机制是基于原型的。</strong><br>数组元素调用的数组方法，实际上是继承自它的原型链上。<br><code>myArray</code> –&gt; <code>Array.prototype</code> –&gt; <code>Object.prototype</code> –&gt; <code>null</code><br><code>forEach</code>等等数组方法，实际上是<code>Array.prototype</code>对象的方法。</p>
@@ -210,7 +214,7 @@ date: 2015-02-18 22:54:03####1. NodeList
 <p><code>NodeList.prototype</code> 只有一个 <code>item</code> 方法，并有 <code>Array.prototype</code> 上的那些方法。</p>
 <p>当然，如果很想用数组方法来操作NodeList时，我们可以采用以下方法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> forEach = <span class="built_in">Array</span>.prototype.forEach;</div><div class="line"></div><div class="line"><span class="keyword">var</span> divs = <span class="built_in">document</span>.getElementsByTagName( <span class="string">'div'</span> );</div><div class="line"><span class="keyword">var</span> firstDiv = divs[ <span class="number">0</span> ];</div><div class="line"></div><div class="line">forEach.call(firstDiv.childNodes, <span class="function"><span class="keyword">function</span>(<span class="params"> divChild </span>)</span>&#123;</div><div class="line">  divChild.parentNode.style.color = <span class="string">'#0F0'</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>####2. <strong>NodeList是动态的？</strong></p>
+<p>####2. NodeList是动态的？</p>
 <p>可能很多书上会表示NodeList是动态，实际上<strong>这句话不全对</strong>。<br><strong>了解一个概念首先应该参考热门社区的用法文档或者官方标准的描述，然后根据实例来分析。</strong><br>在MDN关于<a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList" target="_blank" rel="external">NodeList</a>的描述中，我们可以看到几个大字：<strong>A sometimes-live collection.</strong><br>大家可能都知道，通过<code>Node.childNodes</code>获取到的childNodes是动态的，那什么情况下是静态的呢：</p>
 <blockquote>
 <p>In other cases, the NodeList is a static collection, meaning any subsequent change in the DOM does not affect the content of the collection. document.querySelectorAll returns a static NodeList.</p>
