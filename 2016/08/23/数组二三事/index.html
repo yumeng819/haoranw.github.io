@@ -4,24 +4,33 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>ransama&#39;s Blog</title>
+  <title>数组二三事 | ransama&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数组二三事本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容1. forEach操作数组当我们想对数组所有元素进行自加操作，如果进行如下操作：12345var arr=[2,3,4,5];arr.forEach(function(item,index,arr)&amp;#123;	item++;    &amp;#125;);console.log(arr);
+  <meta name="description" content="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容
+forEach操作数组当我们想对数组所有元素进行自加操作，如果进行如下操作：12345var arr=[2,3,4,5];arr.forEach(function(item,index,arr)&amp;#123;	item++;    &amp;#125;);console.log(arr);
+
+
 结果是：1[2,3,4,5]
-我">
+我们发现原数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ransama's Blog">
+<meta property="og:title" content="数组二三事">
 <meta property="og:url" content="/2016/08/23/数组二三事/index.html">
 <meta property="og:site_name" content="ransama's Blog">
-<meta property="og:description" content="数组二三事本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容1. forEach操作数组当我们想对数组所有元素进行自加操作，如果进行如下操作：12345var arr=[2,3,4,5];arr.forEach(function(item,index,arr)&amp;#123;	item++;    &amp;#125;);console.log(arr);
+<meta property="og:description" content="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容
+forEach操作数组当我们想对数组所有元素进行自加操作，如果进行如下操作：12345var arr=[2,3,4,5];arr.forEach(function(item,index,arr)&amp;#123;	item++;    &amp;#125;);console.log(arr);
+
+
 结果是：1[2,3,4,5]
-我">
-<meta property="og:updated_time" content="2016-08-23T10:37:16.411Z">
+我们发现原数">
+<meta property="og:updated_time" content="2016-08-23T11:28:07.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ransama's Blog">
-<meta name="twitter:description" content="数组二三事本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容1. forEach操作数组当我们想对数组所有元素进行自加操作，如果进行如下操作：12345var arr=[2,3,4,5];arr.forEach(function(item,index,arr)&amp;#123;	item++;    &amp;#125;);console.log(arr);
+<meta name="twitter:title" content="数组二三事">
+<meta name="twitter:description" content="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容
+forEach操作数组当我们想对数组所有元素进行自加操作，如果进行如下操作：12345var arr=[2,3,4,5];arr.forEach(function(item,index,arr)&amp;#123;	item++;    &amp;#125;);console.log(arr);
+
+
 结果是：1[2,3,4,5]
-我">
+我们发现原数">
   
     <link rel="alternative" href="/atom.xml" title="ransama&#39;s Blog" type="application/atom+xml">
   
@@ -79,7 +88,7 @@
 						<li>Tags</li>
 						
 						
-						<li>A propos</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -195,19 +204,50 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数组二三事
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="数组二三事"><a href="#数组二三事" class="headerlink" title="数组二三事"></a>数组二三事</h3><h5 id="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"><a href="#本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容" class="headerlink" title="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"></a>本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容</h5><h4 id="1-forEach操作数组"><a href="#1-forEach操作数组" class="headerlink" title="1. forEach操作数组"></a>1. forEach操作数组</h4><p>当我们想对数组所有元素进行自加操作，如果进行如下操作：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var arr=[2,3,4,5];</div><div class="line">arr.forEach(<span class="keyword">function</span>(item,index,arr)&#123;</div><div class="line">	item++;</div><div class="line">    &#125;);</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure></p>
+        <h5 id="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"><a href="#本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容" class="headerlink" title="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"></a>本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容</h5><ol>
+<li>forEach操作数组<br>当我们想对数组所有元素进行自加操作，如果进行如下操作：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var arr=[2,3,4,5];</div><div class="line">arr.forEach(<span class="keyword">function</span>(item,index,arr)&#123;</div><div class="line">	item++;</div><div class="line">    &#125;);</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[2,3,4,5]</div></pre></td></tr></table></figure></p>
 <p>我们发现原数组并没有变化，因为forEach()的三个参数items，index，array中，items仅获得该数组各个元素的值，所以改变这个值并不会改变原数组。<br>正确的在原数组基础上修改的方法如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var arr=[2,3,4,5];</div><div class="line">arr.forEach(<span class="keyword">function</span>(item,index,arr)&#123;</div><div class="line">	arr[index]++;</div><div class="line">    &#125;);</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure></p>
 <p>结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[3,4,5,6]</div></pre></td></tr></table></figure></p>
-<h4 id="2-slice"><a href="#2-slice" class="headerlink" title="2.slice"></a>2.slice</h4><p>先看一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [[]];</div><div class="line"><span class="keyword">var</span> arr2=[]; <span class="comment">//新建了两个数组，arr1为二维数组</span></div><div class="line"><span class="keyword">var</span> newArr1=arr1.slice();</div><div class="line"><span class="keyword">var</span> newArr2=arr2.slice();<span class="comment">//复制了两个新的的数组</span></div><div class="line">arr1[<span class="number">0</span>][<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line">arr2[<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line"><span class="built_in">console</span>.log(newArr1);</div><div class="line"><span class="built_in">console</span>.log(newArr2);</div></pre></td></tr></table></figure></p>
+<ol>
+<li>slice<br>先看一个例子：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [[]];</div><div class="line"><span class="keyword">var</span> arr2=[]; <span class="comment">//新建了两个数组，arr1为二维数组</span></div><div class="line"><span class="keyword">var</span> newArr1=arr1.slice();</div><div class="line"><span class="keyword">var</span> newArr2=arr2.slice();<span class="comment">//复制了两个新的的数组</span></div><div class="line">arr1[<span class="number">0</span>][<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line">arr2[<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line"><span class="built_in">console</span>.log(newArr1);</div><div class="line"><span class="built_in">console</span>.log(newArr2);</div></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>首先我们新建立两个数组，然后用slice“复制”了a这两个数组，在分别向原数组添加元素后，新数组会不会改变呢？<br>看起来我们既然是复制了新的数组，似乎和之前的数组并没有什么关系。<br>结果是：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>[<span class="number">1</span>]</div><div class="line">  <span class="comment">//0: Array[1]</span></div><div class="line">    <span class="comment">//0: "666"</span></div><div class="line">[]</div></pre></td></tr></table></figure>
 <p>为什么会产生了不同结果呢？<br>slice 遵循一级深度拷贝规则，规则如下：</p>
 <p>如果该元素是个对象引用 （不是实际的对象），slice 会拷贝这个对象引用到新的数组里。两个对象引用都引用了同一个对象。如果被引用的对象发生改变，则改变将反应到新的和原来的数组中，数组是对象，所以<code>newArr1</code>实际是拷贝了每一个内层数组的引用。</p>
 <p>对于字符串和数字来说（不是 String 和 Number 对象），slice 会拷贝字符串和数字到新的数组里。在一个数组里修改这些字符串或数字，不会影响另一个数组。<br>如果向两个数组任一中添加了新元素，则另一个不会受到影响。</p>
-<h3 id="3-数组去重三种方法"><a href="#3-数组去重三种方法" class="headerlink" title="3.数组去重三种方法"></a>3.数组去重三种方法</h3><p>第一种方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(result.indexOf(v) &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断result中是否存在该值</span></div><div class="line">            result.push(v);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> result;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>数组去重三种方法</li>
+</ol>
+<p>第一种方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(result.indexOf(v) &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断result中是否存在该值</span></div><div class="line">            result.push(v);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> result;</div></pre></td></tr></table></figure></p>
 <p>第二种方法，模拟hash表，将同一数值的不同类型存储在对应的hash表的对应项中。例如对于<code>[2,&quot;2&quot;]</code>,相应的项<code>hash(0)</code>对应<code>[&quot;number&quot;,&quot;string&quot;];</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">var</span> result = [],hash = &#123;&#125;;</div><div class="line">      <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> type = <span class="keyword">typeof</span>(v);  <span class="comment">//获取元素类型</span></div><div class="line">          hash[v] || (hash[v] = <span class="keyword">new</span> <span class="built_in">Array</span>());</div><div class="line">          <span class="keyword">if</span>(hash[v].indexOf(type) &lt; <span class="number">0</span>)&#123;</div><div class="line">              hash[v].push(type);  <span class="comment">//存储元素的类型</span></div><div class="line">              result.push(v);</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>第三种方法先排序，然后取数组各项依次和result数组最后一项作比较，如果不同则存入，如果相同则舍弃。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">this</span>.sort(compare);</div><div class="line">       <span class="keyword">var</span> result = [<span class="keyword">this</span>[<span class="number">0</span>]];</div><div class="line">       <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</div><div class="line">           <span class="keyword">if</span> (v != result[result.length - <span class="number">1</span>]) &#123; <span class="comment">//仅与result最后一个元素比较</span></div><div class="line">               result.push(v);</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">       <span class="keyword">return</span> result;</div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</div><div class="line">           <span class="keyword">return</span> value1 - value2;</div><div class="line">       &#125;</div><div class="line">   &#125;;</div></pre></td></tr></table></figure></p>
 
@@ -256,7 +296,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="数组二三事" data-title="" data-url="/2016/08/23/数组二三事/"></div>
+	<div class="ds-thread" data-thread-key="数组二三事" data-title="数组二三事" data-url="/2016/08/23/数组二三事/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
