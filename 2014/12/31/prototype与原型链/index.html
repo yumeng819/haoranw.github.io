@@ -6,20 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>__proto__、prototype与原型链 | ransama&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词：__proto__，prototype，Object.create()，instanceof1.  __proto__（隐式原型）与prototype（显式原型）
-显式原型(explicit prototype property)：几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函">
+  <meta name="description" content="关键词：__proto__，prototype，Object.create()，instanceof1.  __proto__（隐式原型）与prototype（显式原型）显式原型(explicit prototype property)：几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="__proto__、prototype与原型链">
 <meta property="og:url" content="/2014/12/31/prototype与原型链/index.html">
 <meta property="og:site_name" content="ransama's Blog">
-<meta property="og:description" content="关键词：__proto__，prototype，Object.create()，instanceof1.  __proto__（隐式原型）与prototype（显式原型）
-显式原型(explicit prototype property)：几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函">
+<meta property="og:description" content="关键词：__proto__，prototype，Object.create()，instanceof1.  __proto__（隐式原型）与prototype（显式原型）显式原型(explicit prototype property)：几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数">
 <meta property="og:image" content="/img/proto.png">
-<meta property="og:updated_time" content="2016-08-31T10:13:39.907Z">
+<meta property="og:updated_time" content="2016-08-31T11:39:37.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="__proto__、prototype与原型链">
-<meta name="twitter:description" content="关键词：__proto__，prototype，Object.create()，instanceof1.  __proto__（隐式原型）与prototype（显式原型）
-显式原型(explicit prototype property)：几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函">
+<meta name="twitter:description" content="关键词：__proto__，prototype，Object.create()，instanceof1.  __proto__（隐式原型）与prototype（显式原型）显式原型(explicit prototype property)：几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数">
 <meta name="twitter:image" content="/img/proto.png">
   
     <link rel="alternative" href="/atom.xml" title="ransama&#39;s Blog" type="application/atom+xml">
@@ -75,10 +72,10 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>Tags</li>
 						
 						
-						<li>关于我</li>
+						<li>A propos</li>
 						
 					</ul>
 				</div>
@@ -218,23 +215,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="关键词：-proto-，prototype，Object-create-，instanceof"><a href="#关键词：-proto-，prototype，Object-create-，instanceof" class="headerlink" title="关键词：__proto__，prototype，Object.create()，instanceof"></a>关键词：<code>__proto__</code>，prototype，Object.create()，instanceof</h4><p><strong>1.  <code>__proto__</code>（隐式原型）与<code>prototype</code>（显式原型）</strong></p>
-<p><strong>显式原型(explicit prototype property)：</strong><br>几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。</p>
+        <h4 id="关键词：-proto-，prototype，Object-create-，instanceof"><a href="#关键词：-proto-，prototype，Object-create-，instanceof" class="headerlink" title="关键词：__proto__，prototype，Object.create()，instanceof"></a>关键词：<code>__proto__</code>，prototype，Object.create()，instanceof</h4><h4 id="1-proto-（隐式原型）与prototype（显式原型）"><a href="#1-proto-（隐式原型）与prototype（显式原型）" class="headerlink" title="1.  __proto__（隐式原型）与prototype（显式原型）"></a><strong>1.  <code>__proto__</code>（隐式原型）与prototype（显式原型）</strong></h4><p><strong>显式原型(explicit prototype property)：</strong><br>几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。</p>
 <p><strong>隐式原型(implicit prototype link)：</strong><br>JavaScript中任意对象都有一个内置属性<code>[[prototype]]</code>，可以通过<code>.__proto__</code>，或者通过符合ES5标准的Get方法<code>Object.getPrototypeOf()</code> 来访问。</p>
-<p>为了介绍二者之间的关系，先上一张图：<br><img src="/img/proto.png" alt="prototype"><br>根据ECMA定义<code>__proto__</code>的指向 ‘<strong>to the value of its constructor’s “prototype”</strong>（其<code>constructor</code>的显式原型），所以我们来看图中：</p>
-<p>a.  对于通过构造函数<code>Foo()</code>和<code>Object()</code>来创建的实例来说，它的<code>__proto__</code>指向创建这个实例的构造函数的<code>prototype</code>，即<code>Foo.prototype</code>和<code>Object。prototype</code>.</p>
+<p>为了介绍二者之间的关系，先上一张图：<br><img src="/img/proto.png" alt="prototype"><br>根据ECMA定义<code>__proto__</code>的指向 <strong>to the value of its constructor’s “prototype”</strong>（其<code>constructor</code>的显式原型），所以我们来看图中：</p>
+<p>a.  对于通过构造函数<code>Foo()</code>和<code>Object()</code>来创建的实例来说，它的<code>__proto__</code>指向创建这个实例的构造函数的<code>prototype</code>，即<code>Foo.prototype</code>和<code>Object.prototype</code>.</p>
 <p>b. 对于<code>function Foo()</code>和<code>function Object()</code>来说，其<code>constructor</code>为<code>Function</code>，所以二者的对应的<code>__proto__</code>为<code>Function.prototype</code>。</p>
 <p>c. 对于内建对象(built-in object)：例如<code>Function()</code>，<code>Function.prototype</code>本身也是一个对象，这个对象是由 <code>Object()</code> 这个构造函数创建所以<code>Function.prototype.__proto__=== Object.prototype //true，</code>所有的内建对象都是由<code>Object()</code>创建而来。</p>
 <p>除了使用构造函数来创建对象以外，JS中对象被创建的方式还有：（1）对象字面量的方式 （2）ES5中的<code>Object.create()</code><br>对象字面量的形式相当于调用了对应的构造函数来创建实例后赋值给该变量，所以<code>__proto__</code>指向其对应构造函数的原型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line"><span class="keyword">var</span> foo=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="built_in">console</span>.log(foo.__proto__==<span class="built_in">Function</span>.prototype);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(obj.__proto__==<span class="built_in">Object</span>.prototype);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
-<p><strong>2. <code>Object.create()</code></strong><br>这是ES5中新增的方法，在这之前这被称为原型式继承，在《JavaScript高级程序设计》P169：</p>
+<h4 id="2-Object-create"><a href="#2-Object-create" class="headerlink" title="2. Object.create()"></a><strong>2. Object.create()</strong></h4><p>这是ES5中新增的方法，在这之前这被称为原型式继承，在《JavaScript高级程序设计》P169：</p>
 <blockquote>
 <p>道格拉斯在2006年写了一篇文章，题为 Prototypal Inheritance In JavaScript。在这篇文章中，他介绍了一种实现继承的方法，这种方法并没有使用严格意义上的构造函数。他的想法是借助原型可以基于已有的对象创建新对象，同时还不比因此创建自定义类型，为了达到这个目的，他给出了如下函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>由 <code>Object.create()</code> 创出来的对象没有构造函数，准确的说是在 <code>Object.create()</code> 函数外部我们不能访问到它的构造函数，然而在函数内部实现中是有的，它短暂地存在了那么一会儿。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person=&#123;</div><div class="line">	familyName:<span class="string">"wang"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mySon=<span class="built_in">Object</span>.create(person);</div></pre></td></tr></table></figure></p>
 <p>假设我们现在就在函数内部:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//var mySon=Object.create(person);相当于执行了：</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">F.prototype = person;</div><div class="line"><span class="comment">//此时有：</span></div><div class="line">mySon.__proto__ === F.prototype <span class="comment">//true</span></div><div class="line"><span class="comment">//最后：</span></div><div class="line"><span class="keyword">var</span> mySon = <span class="keyword">new</span> F();</div><div class="line"><span class="comment">//所以有：</span></div><div class="line">mySon.__proto__ === person;</div></pre></td></tr></table></figure></p>
 <p>因此由<code>Object.create(person)</code>创建出来的对象它的隐式原型指向person。</p>
-<p><strong>3. instanceof</strong></p>
-<p>instanceof 操作符的内部实现机制和<code>__proto__</code>（隐式原型）、<code>prototype</code>（显式原型）有直接的关系。</p>
+<h4 id="3-instanceof"><a href="#3-instanceof" class="headerlink" title="3. instanceof"></a><strong>3. instanceof</strong></h4><p>instanceof 操作符的内部实现机制和<code>__proto__</code>（隐式原型）、<code>prototype</code>（显式原型）有直接的关系。</p>
 <p>instanceof的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。它的内部实现原理是这样的： </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">L.__proto__.__proto__ ..... ？= R.prototype</div></pre></td></tr></table></figure>
 <p>也就是沿着L的<code>__proto__</code>一直寻找到原型链末端，直到等于R.prototype或者null为止。</p>
