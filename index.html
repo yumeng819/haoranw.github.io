@@ -66,10 +66,10 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>标签</li>
 						
 						
-						<li>A propos</li>
+						<li>关于我</li>
 						
 					</ul>
 				</div>
@@ -174,234 +174,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-绝对居中(Absolute Centering)" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/24/绝对居中(Absolute Centering)/" class="article-date">
-  	<time datetime="2015-08-24T01:39:46.000Z" itemprop="datePublished">2015-08-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/24/绝对居中(Absolute Centering)/">绝对居中(Absolute Centering)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们经常使<code>margin:0 auto</code>来实现水平居中，很多人在刚接触前端时都会有这样的疑问，为什么<code>margin：auto 0</code>不能实现垂直居中？<br>我们来看W3C对margin的部分描述：</p>
-<blockquote>
-<p>If ‘margin-top’, or’margin-bottom’ are ‘auto’, their used value is 0.</p>
-</blockquote>
-<p>可以理解为在普通内容流（normal content flow）中，margin:auto的效果等同于margin-top:0;margin-bottom:0。<br>但是我们可以用以下代码实现垂直居中：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.ac</span>&#123;</div><div class="line">	<span class="attribute">margin</span>: auto;</div><div class="line">	<span class="attribute">position</span>:absolute;</div><div class="line">	<span class="attribute">top</span>:<span class="number">0</span>;</div><div class="line">	<span class="attribute">left</span>:<span class="number">0</span>;</div><div class="line">	<span class="attribute">right</span>:<span class="number">0</span>;</div><div class="line">	<span class="attribute">bottom</span>:<span class="number">0</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>此方法即是Absolute Centering。详细内容的英文原文可以参见<a href="http://codepen.io/shshaw/details/gEiDt" target="_blank" rel="external">Absolute Centering</a></p>
-<h4 id="绝对居中的实现原理："><a href="#绝对居中的实现原理：" class="headerlink" title="绝对居中的实现原理："></a>绝对居中的实现原理：</h4><p><strong>“其实在接触到一样新方法时，知道其中的实现原理远比知道如何用重要的多。”</strong></p>
-<p style="text-align:right">——沃兹基硕德 </p>
-
-<p>绝对居中（<em>Absolute Centering</em>）的工作机理可以总结如下：</p>
-<p>1.<code>position: absolute;</code>打破了通常的文档流。文档流内剩余的部分在渲染时，会当做这个块元素不在这。<br>2.将块元素设置为<code>top: 0; left: 0; bottom: 0; right: 0;</code>会让浏览器给这个块元素一个新的边界框。此时这个块元素会填满它相关的父元素的的可用空间（body或者设置了<code>position:relative</code>的父元素）。</p>
-<p>3.赋予这个块元素一个宽度或高度，防止了这个块元素占据所有的可用空间，并且强制浏览器在新的边界框的基础上计算<code>margin:auto</code>。</p>
-<p>4.因为这个块元素已经绝对定位了，因而脱离了正常的流，浏览器给予<code>margin-top</code>和<code>margin-bottom</code>一个相等的值使得这个元素在之前设置好的边界中居中。</p>
-<p>同样我们可以来看一句W3C的官方描述：</p>
-<blockquote>
-<p>If none of the three [top, bottom, height] are ‘auto’: If both ‘margin-top’ and ‘margin-bottom’ are ‘auto’, solve the equation under the extra constraint that the two margins get equal values. AKA: center the block vertically</p>
-</blockquote>
-<p>如果<code>top, bottom, height</code>三个元素都不是<code>auto</code>并且<code>margin-top</code>和<code>margin-bottom</code>也是<code>auto</code> ，在额外的约束条件下，两个margin会得到相等的值。</p>
-<p>margin:auto似乎生来就是为绝对居中(<em>Absolute Centering</em>)设计的，所以绝对居中(<em>Absolute Centering</em>)应该都兼容符合标准的现代浏览器。</p>
-<p>简而言之：绝对定位元素不在普通内容流中渲染，因此<code>margin:auto</code>可以使内容在通过<code>top: 0; left: 0; bottom: 0;right: 0;</code>设置的边界内垂直居中。</p>
-<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><p>1.支持跨浏览器，包括IE8-IE10。<br>2.无需其他特殊标记，CSS代码量少。<br>3.支持百分比%属性值和min-/max-属性。<br>4.只用这一个类可实现任何内容块居中。<br>5.不论是否设置padding都可居中（在不使用box-sizing属性的前提下）。<br>6.内容块可以被重绘。<br>7.完美支持图片居中。</p>
-<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>1.必须声明高度（查看可变高度Variable Height）。<br>2.建议设置overflow:auto来防止内容越界溢出。（查看溢出Overflow）。<br>3.在Windows Phone设备上不起作用。</p>
-<h4 id="浏览器兼容性："><a href="#浏览器兼容性：" class="headerlink" title="浏览器兼容性："></a>浏览器兼容性：</h4><p>Chrome,Firefox, Safari, Mobile Safari, IE8-10.</p>
-<p>最后附上一张各种居中方法的优缺点以及兼容性统计，同时给自己挖个坑。。。有空再填吧。<br><img src="/img/ac.png" alt="Alt text"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-数组二三事" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/04/数组二三事/" class="article-date">
-  	<time datetime="2015-01-04T01:02:52.000Z" itemprop="datePublished">2015-01-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/数组二三事/">数组二三事</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"><a href="#本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容" class="headerlink" title="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"></a>本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容</h5><h4 id="1-forEach操作数组"><a href="#1-forEach操作数组" class="headerlink" title="1. forEach操作数组"></a>1. forEach操作数组</h4><p>当我们想对数组所有元素进行自加操作，如果进行如下操作：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</div><div class="line">	item++;</div><div class="line">    &#125;);</div><div class="line"><span class="built_in">console</span>.log(arr);</div></pre></td></tr></table></figure></p>
-<p>结果是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div></pre></td></tr></table></figure></p>
-<p>我们发现原数组并没有变化，因为forEach()的三个参数items，index，array中，items仅获得该数组各个元素的值，所以改变这个值并不会改变原数组。<br>正确的在原数组基础上修改的方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</div><div class="line">	arr[index]++;</div><div class="line">    &#125;);</div><div class="line"><span class="built_in">console</span>.log(arr);</div></pre></td></tr></table></figure></p>
-<p>结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[3,4,5,6]</div></pre></td></tr></table></figure></p>
-<h4 id="2-slice"><a href="#2-slice" class="headerlink" title="2.slice"></a>2.slice</h4><p>先看一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [[]];</div><div class="line"><span class="keyword">var</span> arr2=[]; <span class="comment">//新建了两个数组，arr1为二维数组</span></div><div class="line"><span class="keyword">var</span> newArr1=arr1.slice();</div><div class="line"><span class="keyword">var</span> newArr2=arr2.slice();<span class="comment">//复制了两个新的的数组</span></div><div class="line">arr1[<span class="number">0</span>][<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line">arr2[<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line"><span class="built_in">console</span>.log(newArr1);</div><div class="line"><span class="built_in">console</span>.log(newArr2);</div></pre></td></tr></table></figure></p>
-<p>首先我们新建立两个数组，然后用slice“复制”了a这两个数组，在分别向原数组添加元素后，新数组会不会改变呢？<br>看起来我们既然是复制了新的数组，似乎和之前的数组并没有什么关系。<br>结果是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>[<span class="number">1</span>]</div><div class="line">  <span class="comment">//0: Array[1]</span></div><div class="line">    <span class="comment">//0: "666"</span></div><div class="line">[]</div></pre></td></tr></table></figure>
-<p>为什么会产生了不同结果呢？<br>slice 遵循一级深度拷贝规则，规则如下：</p>
-<p>如果该元素是个对象引用 （不是实际的对象），slice 会拷贝这个对象引用到新的数组里。两个对象引用都引用了同一个对象。如果被引用的对象发生改变，则改变将反应到新的和原来的数组中，数组是对象，所以<code>newArr1</code>实际是拷贝了每一个内层数组的引用。</p>
-<p>对于字符串和数字来说（不是 String 和 Number 对象），slice 会拷贝字符串和数字到新的数组里。在一个数组里修改这些字符串或数字，不会影响另一个数组。<br>如果向两个数组任一中添加了新元素，则另一个不会受到影响。</p>
-<h3 id="3-数组去重三种方法"><a href="#3-数组去重三种方法" class="headerlink" title="3.数组去重三种方法"></a>3.数组去重三种方法</h3><p>第一种方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(result.indexOf(v) &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断result中是否存在该值</span></div><div class="line">            result.push(v);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> result;</div></pre></td></tr></table></figure></p>
-<p>第二种方法，模拟hash表，将同一数值的不同类型存储在对应的hash表的对应项中。例如对于<code>[2,&quot;2&quot;]</code>,相应的项<code>hash(0)</code>对应<code>[&quot;number&quot;,&quot;string&quot;];</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">var</span> result = [],hash = &#123;&#125;;</div><div class="line">      <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> type = <span class="keyword">typeof</span>(v);  <span class="comment">//获取元素类型</span></div><div class="line">          hash[v] || (hash[v] = <span class="keyword">new</span> <span class="built_in">Array</span>());</div><div class="line">          <span class="keyword">if</span>(hash[v].indexOf(type) &lt; <span class="number">0</span>)&#123;</div><div class="line">              hash[v].push(type);  <span class="comment">//存储元素的类型</span></div><div class="line">              result.push(v);</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>第三种方法先排序，然后取数组各项依次和result数组最后一项作比较，如果不同则存入，如果相同则舍弃。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">this</span>.sort(compare);</div><div class="line">       <span class="keyword">var</span> result = [<span class="keyword">this</span>[<span class="number">0</span>]];</div><div class="line">       <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</div><div class="line">           <span class="keyword">if</span> (v != result[result.length - <span class="number">1</span>]) &#123; <span class="comment">//仅与result最后一个元素比较</span></div><div class="line">               result.push(v);</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">       <span class="keyword">return</span> result;</div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</div><div class="line">           <span class="keyword">return</span> value1 - value2;</div><div class="line">       &#125;</div><div class="line">   &#125;;</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-prototype与原型链" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/31/prototype与原型链/" class="article-date">
-  	<time datetime="2014-12-31T09:40:37.000Z" itemprop="datePublished">2014-12-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/31/prototype与原型链/">__proto__、prototype与原型链</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="关键词：-proto-，prototype，Object-create-，instanceof"><a href="#关键词：-proto-，prototype，Object-create-，instanceof" class="headerlink" title="关键词：__proto__，prototype，Object.create()，instanceof"></a>关键词：<code>__proto__</code>，prototype，Object.create()，instanceof</h4><h4 id="1-proto-（隐式原型）与prototype（显式原型）"><a href="#1-proto-（隐式原型）与prototype（显式原型）" class="headerlink" title="1.  __proto__（隐式原型）与prototype（显式原型）"></a><strong>1.  <code>__proto__</code>（隐式原型）与prototype（显式原型）</strong></h4><p><strong>显式原型(explicit prototype property)：</strong><br>几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。</p>
-<p><strong>隐式原型(implicit prototype link)：</strong><br>JavaScript中任意对象都有一个内置属性<code>[[prototype]]</code>，可以通过<code>.__proto__</code>，或者通过符合ES5标准的Get方法<code>Object.getPrototypeOf()</code> 来访问。</p>
-<p>为了介绍二者之间的关系，先上一张图：<br><img src="/img/proto.png" alt="prototype"><br>根据ECMA定义<code>__proto__</code>的指向 <strong>to the value of its constructor’s “prototype”</strong>（其<code>constructor</code>的显式原型），所以我们来看图中：</p>
-<p>a.  对于通过构造函数<code>Foo()</code>和<code>Object()</code>来创建的实例来说，它的<code>__proto__</code>指向创建这个实例的构造函数的<code>prototype</code>，即<code>Foo.prototype</code>和<code>Object.prototype</code>.</p>
-<p>b. 对于<code>function Foo()</code>和<code>function Object()</code>来说，其<code>constructor</code>为<code>Function</code>，所以二者的对应的<code>__proto__</code>为<code>Function.prototype</code>。</p>
-<p>c. 对于内建对象(built-in object)：例如<code>Function()</code>，<code>Function.prototype</code>本身也是一个对象，这个对象是由 <code>Object()</code> 这个构造函数创建所以<code>Function.prototype.__proto__=== Object.prototype //true，</code>所有的内建对象都是由<code>Object()</code>创建而来。</p>
-<p>除了使用构造函数来创建对象以外，JS中对象被创建的方式还有：（1）对象字面量的方式 （2）ES5中的<code>Object.create()</code><br>对象字面量的形式相当于调用了对应的构造函数来创建实例后赋值给该变量，所以<code>__proto__</code>指向其对应构造函数的原型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line"><span class="keyword">var</span> foo=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="built_in">console</span>.log(foo.__proto__==<span class="built_in">Function</span>.prototype);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(obj.__proto__==<span class="built_in">Object</span>.prototype);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
-<h4 id="2-Object-create"><a href="#2-Object-create" class="headerlink" title="2. Object.create()"></a><strong>2. Object.create()</strong></h4><p>这是ES5中新增的方法，在这之前这被称为原型式继承，在《JavaScript高级程序设计》P169：</p>
-<blockquote>
-<p>道格拉斯在2006年写了一篇文章，题为 Prototypal Inheritance In JavaScript。在这篇文章中，他介绍了一种实现继承的方法，这种方法并没有使用严格意义上的构造函数。他的想法是借助原型可以基于已有的对象创建新对象，同时还不比因此创建自定义类型，为了达到这个目的，他给出了如下函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>由 <code>Object.create()</code> 创出来的对象没有构造函数，准确的说是在 <code>Object.create()</code> 函数外部我们不能访问到它的构造函数，然而在函数内部实现中是有的，它短暂地存在了那么一会儿。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person=&#123;</div><div class="line">	familyName:<span class="string">"wang"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mySon=<span class="built_in">Object</span>.create(person);</div></pre></td></tr></table></figure></p>
-<p>假设我们现在就在函数内部:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//var mySon=Object.create(person);相当于执行了：</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">F.prototype = person;</div><div class="line"><span class="comment">//此时有：</span></div><div class="line">mySon.__proto__ === F.prototype <span class="comment">//true</span></div><div class="line"><span class="comment">//最后：</span></div><div class="line"><span class="keyword">var</span> mySon = <span class="keyword">new</span> F();</div><div class="line"><span class="comment">//所以有：</span></div><div class="line">mySon.__proto__ === person;</div></pre></td></tr></table></figure></p>
-<p>因此由<code>Object.create(person)</code>创建出来的对象它的隐式原型指向person。</p>
-<h4 id="3-instanceof"><a href="#3-instanceof" class="headerlink" title="3. instanceof"></a><strong>3. instanceof</strong></h4><p>instanceof 操作符的内部实现机制和<code>__proto__</code>（隐式原型）、<code>prototype</code>（显式原型）有直接的关系。</p>
-<p>instanceof的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。它的内部实现原理是这样的： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">L.__proto__.__proto__ ..... ？= R.prototype</div></pre></td></tr></table></figure>
-<p>也就是沿着L的<code>__proto__</code>一直寻找到原型链末端，直到等于R.prototype或者null为止。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-NodeList和HTMLCollection" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/10/NodeList和HTMLCollection/" class="article-date">
-  	<time datetime="2014-12-10T01:02:52.000Z" itemprop="datePublished">2014-12-10</time>
+      <a href="/2016/09/05/NodeList和HTMLCollection/" class="article-date">
+  	<time datetime="2016-09-05T01:00:42.000Z" itemprop="datePublished">2016-09-05</time>
 </a>
     </div>
   
@@ -414,7 +191,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/10/NodeList和HTMLCollection/">NodeList和HTMLCollection</a>
+      <a class="article-title" href="/2016/09/05/NodeList和HTMLCollection/">NodeList和HTMLCollection</a>
     </h1>
   
 
@@ -487,8 +264,8 @@
     <article id="post-从创建一个字符串说起" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/04/从创建一个字符串说起/" class="article-date">
-  	<time datetime="2014-11-04T01:02:52.000Z" itemprop="datePublished">2014-11-04</time>
+      <a href="/2016/09/05/从创建一个字符串说起/" class="article-date">
+  	<time datetime="2016-09-05T01:00:42.000Z" itemprop="datePublished">2016-09-05</time>
 </a>
     </div>
   
@@ -501,7 +278,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/04/从创建一个字符串说起/">从创建一个字符串说起</a>
+      <a class="article-title" href="/2016/09/05/从创建一个字符串说起/">从创建一个字符串说起</a>
     </h1>
   
 
@@ -554,11 +331,11 @@
 
 
   
-    <article id="post-关于String的一些细节" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-prototype与原型链" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/16/关于String的一些细节/" class="article-date">
-  	<time datetime="2014-09-16T01:02:52.000Z" itemprop="datePublished">2014-09-16</time>
+      <a href="/2016/09/05/prototype与原型链/" class="article-date">
+  	<time datetime="2016-09-05T01:00:42.000Z" itemprop="datePublished">2016-09-05</time>
 </a>
     </div>
   
@@ -571,7 +348,230 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/16/关于String的一些细节/">关于String的一些细节</a>
+      <a class="article-title" href="/2016/09/05/prototype与原型链/">__proto__、prototype与原型链</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="关键词：-proto-，prototype，Object-create-，instanceof"><a href="#关键词：-proto-，prototype，Object-create-，instanceof" class="headerlink" title="关键词：__proto__，prototype，Object.create()，instanceof"></a>关键词：<code>__proto__</code>，prototype，Object.create()，instanceof</h4><h4 id="1-proto-（隐式原型）与prototype（显式原型）"><a href="#1-proto-（隐式原型）与prototype（显式原型）" class="headerlink" title="1.  __proto__（隐式原型）与prototype（显式原型）"></a><strong>1.  <code>__proto__</code>（隐式原型）与prototype（显式原型）</strong></h4><p><strong>显式原型(explicit prototype property)：</strong><br>几乎每一个函数(通过Function.prototype.bind方法构造出来的函数是个例外)在创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象。</p>
+<p><strong>隐式原型(implicit prototype link)：</strong><br>JavaScript中任意对象都有一个内置属性<code>[[prototype]]</code>，可以通过<code>.__proto__</code>，或者通过符合ES5标准的Get方法<code>Object.getPrototypeOf()</code> 来访问。</p>
+<p>为了介绍二者之间的关系，先上一张图：<br><img src="/img/proto.png" alt="prototype"><br>根据ECMA定义<code>__proto__</code>的指向 <strong>to the value of its constructor’s “prototype”</strong>（其<code>constructor</code>的显式原型），所以我们来看图中：</p>
+<p>a.  对于通过构造函数<code>Foo()</code>和<code>Object()</code>来创建的实例来说，它的<code>__proto__</code>指向创建这个实例的构造函数的<code>prototype</code>，即<code>Foo.prototype</code>和<code>Object.prototype</code>.</p>
+<p>b. 对于<code>function Foo()</code>和<code>function Object()</code>来说，其<code>constructor</code>为<code>Function</code>，所以二者的对应的<code>__proto__</code>为<code>Function.prototype</code>。</p>
+<p>c. 对于内建对象(built-in object)：例如<code>Function()</code>，<code>Function.prototype</code>本身也是一个对象，这个对象是由 <code>Object()</code> 这个构造函数创建所以<code>Function.prototype.__proto__=== Object.prototype //true，</code>所有的内建对象都是由<code>Object()</code>创建而来。</p>
+<p>除了使用构造函数来创建对象以外，JS中对象被创建的方式还有：（1）对象字面量的方式 （2）ES5中的<code>Object.create()</code><br>对象字面量的形式相当于调用了对应的构造函数来创建实例后赋值给该变量，所以<code>__proto__</code>指向其对应构造函数的原型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line"><span class="keyword">var</span> foo=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="built_in">console</span>.log(foo.__proto__==<span class="built_in">Function</span>.prototype);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(obj.__proto__==<span class="built_in">Object</span>.prototype);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h4 id="2-Object-create"><a href="#2-Object-create" class="headerlink" title="2. Object.create()"></a><strong>2. Object.create()</strong></h4><p>这是ES5中新增的方法，在这之前这被称为原型式继承，在《JavaScript高级程序设计》P169：</p>
+<blockquote>
+<p>道格拉斯在2006年写了一篇文章，题为 Prototypal Inheritance In JavaScript。在这篇文章中，他介绍了一种实现继承的方法，这种方法并没有使用严格意义上的构造函数。他的想法是借助原型可以基于已有的对象创建新对象，同时还不比因此创建自定义类型，为了达到这个目的，他给出了如下函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>由 <code>Object.create()</code> 创出来的对象没有构造函数，准确的说是在 <code>Object.create()</code> 函数外部我们不能访问到它的构造函数，然而在函数内部实现中是有的，它短暂地存在了那么一会儿。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person=&#123;</div><div class="line">	familyName:<span class="string">"wang"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mySon=<span class="built_in">Object</span>.create(person);</div></pre></td></tr></table></figure></p>
+<p>假设我们现在就在函数内部:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//var mySon=Object.create(person);相当于执行了：</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">F.prototype = person;</div><div class="line"><span class="comment">//此时有：</span></div><div class="line">mySon.__proto__ === F.prototype <span class="comment">//true</span></div><div class="line"><span class="comment">//最后：</span></div><div class="line"><span class="keyword">var</span> mySon = <span class="keyword">new</span> F();</div><div class="line"><span class="comment">//所以有：</span></div><div class="line">mySon.__proto__ === person;</div></pre></td></tr></table></figure></p>
+<p>因此由<code>Object.create(person)</code>创建出来的对象它的隐式原型指向person。</p>
+<h4 id="3-instanceof"><a href="#3-instanceof" class="headerlink" title="3. instanceof"></a><strong>3. instanceof</strong></h4><p>instanceof 操作符的内部实现机制和<code>__proto__</code>（隐式原型）、<code>prototype</code>（显式原型）有直接的关系。</p>
+<p>instanceof的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。它的内部实现原理是这样的： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">L.__proto__.__proto__ ..... ？= R.prototype</div></pre></td></tr></table></figure>
+<p>也就是沿着L的<code>__proto__</code>一直寻找到原型链末端，直到等于R.prototype或者null为止。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-绝对居中(Absolute Centering)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/05/绝对居中(Absolute Centering)/" class="article-date">
+  	<time datetime="2016-09-05T01:00:42.000Z" itemprop="datePublished">2016-09-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/05/绝对居中(Absolute Centering)/">绝对居中(Absolute Centering)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们经常使<code>margin:0 auto</code>来实现水平居中，很多人在刚接触前端时都会有这样的疑问，为什么<code>margin：auto 0</code>不能实现垂直居中？<br>我们来看W3C对margin的部分描述：</p>
+<blockquote>
+<p>If ‘margin-top’, or’margin-bottom’ are ‘auto’, their used value is 0.</p>
+</blockquote>
+<p>可以理解为在普通内容流（normal content flow）中，margin:auto的效果等同于margin-top:0;margin-bottom:0。<br>但是我们可以用以下代码实现垂直居中：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.ac</span>&#123;</div><div class="line">	<span class="attribute">margin</span>: auto;</div><div class="line">	<span class="attribute">position</span>:absolute;</div><div class="line">	<span class="attribute">top</span>:<span class="number">0</span>;</div><div class="line">	<span class="attribute">left</span>:<span class="number">0</span>;</div><div class="line">	<span class="attribute">right</span>:<span class="number">0</span>;</div><div class="line">	<span class="attribute">bottom</span>:<span class="number">0</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此方法即是Absolute Centering。详细内容的英文原文可以参见<a href="http://codepen.io/shshaw/details/gEiDt" target="_blank" rel="external">Absolute Centering</a></p>
+<h4 id="绝对居中的实现原理："><a href="#绝对居中的实现原理：" class="headerlink" title="绝对居中的实现原理："></a>绝对居中的实现原理：</h4><p><strong>“其实在接触到一样新方法时，知道其中的实现原理远比知道如何用重要的多。”</strong></p>
+<p style="text-align:right">——沃兹基硕德 </p>
+
+<p>绝对居中（<em>Absolute Centering</em>）的工作机理可以总结如下：</p>
+<p>1.<code>position: absolute;</code>打破了通常的文档流。文档流内剩余的部分在渲染时，会当做这个块元素不在这。<br>2.将块元素设置为<code>top: 0; left: 0; bottom: 0; right: 0;</code>会让浏览器给这个块元素一个新的边界框。此时这个块元素会填满它相关的父元素的的可用空间（body或者设置了<code>position:relative</code>的父元素）。</p>
+<p>3.赋予这个块元素一个宽度或高度，防止了这个块元素占据所有的可用空间，并且强制浏览器在新的边界框的基础上计算<code>margin:auto</code>。</p>
+<p>4.因为这个块元素已经绝对定位了，因而脱离了正常的流，浏览器给予<code>margin-top</code>和<code>margin-bottom</code>一个相等的值使得这个元素在之前设置好的边界中居中。</p>
+<p>同样我们可以来看一句W3C的官方描述：</p>
+<blockquote>
+<p>If none of the three [top, bottom, height] are ‘auto’: If both ‘margin-top’ and ‘margin-bottom’ are ‘auto’, solve the equation under the extra constraint that the two margins get equal values. AKA: center the block vertically</p>
+</blockquote>
+<p>如果<code>top, bottom, height</code>三个元素都不是<code>auto</code>并且<code>margin-top</code>和<code>margin-bottom</code>也是<code>auto</code> ，在额外的约束条件下，两个margin会得到相等的值。</p>
+<p>margin:auto似乎生来就是为绝对居中(<em>Absolute Centering</em>)设计的，所以绝对居中(<em>Absolute Centering</em>)应该都兼容符合标准的现代浏览器。</p>
+<p>简而言之：绝对定位元素不在普通内容流中渲染，因此<code>margin:auto</code>可以使内容在通过<code>top: 0; left: 0; bottom: 0;right: 0;</code>设置的边界内垂直居中。</p>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><p>1.支持跨浏览器，包括IE8-IE10。<br>2.无需其他特殊标记，CSS代码量少。<br>3.支持百分比%属性值和min-/max-属性。<br>4.只用这一个类可实现任何内容块居中。<br>5.不论是否设置padding都可居中（在不使用box-sizing属性的前提下）。<br>6.内容块可以被重绘。<br>7.完美支持图片居中。</p>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>1.必须声明高度（查看可变高度Variable Height）。<br>2.建议设置overflow:auto来防止内容越界溢出。（查看溢出Overflow）。<br>3.在Windows Phone设备上不起作用。</p>
+<h4 id="浏览器兼容性："><a href="#浏览器兼容性：" class="headerlink" title="浏览器兼容性："></a>浏览器兼容性：</h4><p>Chrome,Firefox, Safari, Mobile Safari, IE8-10.</p>
+<p>最后附上一张各种居中方法的优缺点以及兼容性统计，同时给自己挖个坑。。。有空再填吧。<br><img src="/img/ac.png" alt="Alt text"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-数组二三事" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/05/数组二三事/" class="article-date">
+  	<time datetime="2016-09-05T01:00:42.000Z" itemprop="datePublished">2016-09-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/05/数组二三事/">数组二三事</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"><a href="#本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容" class="headerlink" title="本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容"></a>本篇包含：forEach，slice，一级深度拷贝规则，数组排序等内容</h5><h4 id="1-forEach操作数组"><a href="#1-forEach操作数组" class="headerlink" title="1. forEach操作数组"></a>1. forEach操作数组</h4><p>当我们想对数组所有元素进行自加操作，如果进行如下操作：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</div><div class="line">	item++;</div><div class="line">    &#125;);</div><div class="line"><span class="built_in">console</span>.log(arr);</div></pre></td></tr></table></figure></p>
+<p>结果是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div></pre></td></tr></table></figure></p>
+<p>我们发现原数组并没有变化，因为forEach()的三个参数items，index，array中，items仅获得该数组各个元素的值，所以改变这个值并不会改变原数组。<br>正确的在原数组基础上修改的方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</div><div class="line">	arr[index]++;</div><div class="line">    &#125;);</div><div class="line"><span class="built_in">console</span>.log(arr);</div></pre></td></tr></table></figure></p>
+<p>结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[3,4,5,6]</div></pre></td></tr></table></figure></p>
+<h4 id="2-slice"><a href="#2-slice" class="headerlink" title="2.slice"></a>2.slice</h4><p>先看一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [[]];</div><div class="line"><span class="keyword">var</span> arr2=[]; <span class="comment">//新建了两个数组，arr1为二维数组</span></div><div class="line"><span class="keyword">var</span> newArr1=arr1.slice();</div><div class="line"><span class="keyword">var</span> newArr2=arr2.slice();<span class="comment">//复制了两个新的的数组</span></div><div class="line">arr1[<span class="number">0</span>][<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line">arr2[<span class="number">0</span>]=<span class="string">"666"</span>;</div><div class="line"><span class="built_in">console</span>.log(newArr1);</div><div class="line"><span class="built_in">console</span>.log(newArr2);</div></pre></td></tr></table></figure></p>
+<p>首先我们新建立两个数组，然后用slice“复制”了a这两个数组，在分别向原数组添加元素后，新数组会不会改变呢？<br>看起来我们既然是复制了新的数组，似乎和之前的数组并没有什么关系。<br>结果是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>[<span class="number">1</span>]</div><div class="line">  <span class="comment">//0: Array[1]</span></div><div class="line">    <span class="comment">//0: "666"</span></div><div class="line">[]</div></pre></td></tr></table></figure>
+<p>为什么会产生了不同结果呢？<br>slice 遵循一级深度拷贝规则，规则如下：</p>
+<p>如果该元素是个对象引用 （不是实际的对象），slice 会拷贝这个对象引用到新的数组里。两个对象引用都引用了同一个对象。如果被引用的对象发生改变，则改变将反应到新的和原来的数组中，数组是对象，所以<code>newArr1</code>实际是拷贝了每一个内层数组的引用。</p>
+<p>对于字符串和数字来说（不是 String 和 Number 对象），slice 会拷贝字符串和数字到新的数组里。在一个数组里修改这些字符串或数字，不会影响另一个数组。<br>如果向两个数组任一中添加了新元素，则另一个不会受到影响。</p>
+<h3 id="3-数组去重三种方法"><a href="#3-数组去重三种方法" class="headerlink" title="3.数组去重三种方法"></a>3.数组去重三种方法</h3><p>第一种方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(result.indexOf(v) &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断result中是否存在该值</span></div><div class="line">            result.push(v);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> result;</div></pre></td></tr></table></figure></p>
+<p>第二种方法，模拟hash表，将同一数值的不同类型存储在对应的hash表的对应项中。例如对于<code>[2,&quot;2&quot;]</code>,相应的项<code>hash(0)</code>对应<code>[&quot;number&quot;,&quot;string&quot;];</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">var</span> result = [],hash = &#123;&#125;;</div><div class="line">      <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> type = <span class="keyword">typeof</span>(v);  <span class="comment">//获取元素类型</span></div><div class="line">          hash[v] || (hash[v] = <span class="keyword">new</span> <span class="built_in">Array</span>());</div><div class="line">          <span class="keyword">if</span>(hash[v].indexOf(type) &lt; <span class="number">0</span>)&#123;</div><div class="line">              hash[v].push(type);  <span class="comment">//存储元素的类型</span></div><div class="line">              result.push(v);</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>第三种方法先排序，然后取数组各项依次和result数组最后一项作比较，如果不同则存入，如果相同则舍弃。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">this</span>.sort(compare);</div><div class="line">       <span class="keyword">var</span> result = [<span class="keyword">this</span>[<span class="number">0</span>]];</div><div class="line">       <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</div><div class="line">           <span class="keyword">if</span> (v != result[result.length - <span class="number">1</span>]) &#123; <span class="comment">//仅与result最后一个元素比较</span></div><div class="line">               result.push(v);</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">       <span class="keyword">return</span> result;</div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</div><div class="line">           <span class="keyword">return</span> value1 - value2;</div><div class="line">       &#125;</div><div class="line">   &#125;;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-关于String的一些细节" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/05/关于String的一些细节/" class="article-date">
+  	<time datetime="2016-09-05T01:00:42.000Z" itemprop="datePublished">2016-09-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/05/关于String的一些细节/">关于String的一些细节</a>
     </h1>
   
 
